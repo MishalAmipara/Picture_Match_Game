@@ -12,6 +12,9 @@
         android:theme="@style/Theme.Picture_Match_Puzzel"
         tools:targetApi="31">
         <activity
+            android:name=".No_Time_Activity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
