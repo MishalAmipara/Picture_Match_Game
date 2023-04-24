@@ -41,12 +41,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         if (view.getId()==normal.getId())
         {
-            Intent intent =new Intent(MainActivity.this,No_Time_Activity.class);
+            Intent intent =new Intent(MainActivity.this,normal_activity.class);
             startActivity(intent);
         }
         if (view.getId()==hard.getId())
         {
-            Intent intent =new Intent(MainActivity.this,No_Time_Activity.class);
+            Intent intent =new Intent(MainActivity.this,hard_level_activity.class);
             startActivity(intent);
         }
         if (view.getId()==removeads.getId())

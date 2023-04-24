@@ -7,11 +7,20 @@
     android:gravity="center"
     android:orientation="vertical"
     tools:context=".No_Time_Activity">
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/Rcycler_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-    </androidx.recyclerview.widget.RecyclerView>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:background="@drawable/border_layaout">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="Match 1"
+            android:textSize="@dimen/_20sdp"></TextView>
+        <Button
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:layout_alignParentEnd="true"></Button>
+    </RelativeLayout>
 </LinearLayout>
