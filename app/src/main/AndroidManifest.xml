@@ -12,6 +12,9 @@
         android:theme="@style/Theme.Picture_Match_Puzzel"
         tools:targetApi="31">
         <activity
+            android:name=".level_play_activity"
+            android:exported="false" />
+        <activity
             android:name=".hard_level_activity"
             android:exported="false" />
         <activity

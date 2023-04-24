@@ -4,23 +4,57 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
+
     android:orientation="vertical"
     tools:context=".No_Time_Activity">
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:background="@drawable/border_layaout">
-        <TextView
-            android:layout_width="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="@dimen/_50sdp"
+        android:background="@drawable/border_layaout"
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="Match 1"
-            android:textSize="@dimen/_20sdp"></TextView>
-        <Button
-            android:layout_width="@dimen/_20sdp"
-            android:layout_height="@dimen/_20sdp"
-            android:layout_alignParentEnd="true"></Button>
-    </RelativeLayout>
+            android:layout_margin="@dimen/_5sdp"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Match 1"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/Match_txt"
+                android:textSize="@dimen/_25sdp"
+                ></TextView>
+
+            <Button
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_32sdp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="@dimen/_7sdp"
+                android:background="@drawable/question"
+                android:id="@+id/warning_button1"
+                app:backgroundTint="@null"></Button>
+
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"
+
+            android:background="@color/black">
+        </View>
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            <GridView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_8sdp"
+                android:layout_below="@id/Match_txt"
+                android:id="@+id/no_time_grid_view"></GridView>
+            </LinearLayout>
+
+    </LinearLayout>
 </LinearLayout>
