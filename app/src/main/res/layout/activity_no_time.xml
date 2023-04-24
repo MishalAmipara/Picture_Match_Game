@@ -52,7 +52,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/_8sdp"
-                android:layout_below="@id/Match_txt"
                 android:id="@+id/no_time_grid_view"></GridView>
             </LinearLayout>
 

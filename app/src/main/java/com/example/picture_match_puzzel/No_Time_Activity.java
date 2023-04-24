@@ -37,7 +37,7 @@ public class No_Time_Activity extends AppCompatActivity {
                 AlertDialog.Builder builder = new AlertDialog.Builder(No_Time_Activity.this);
                 builder.setTitle("How To Play Match 1");
                 builder.setMessage("Tap on a square to turn it over and see the"+"\n"+" picture it hides."
-                        +"\n \n"+"Tap ao another square to turn it over too."
+                        +"\n \n"+"Tap on another square to turn it over too."
                         +"\n \n"+"if the picture match,they'll stay facing up, if not,"+"\n"+"both will turn over again."
                         +"\n \n"+"Find all couples.");
 
