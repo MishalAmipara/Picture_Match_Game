@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
 
     android:orientation="vertical"
-    tools:context=".No_Time_Activity">
+    tools:context=".Activities.No_Time_Activity">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

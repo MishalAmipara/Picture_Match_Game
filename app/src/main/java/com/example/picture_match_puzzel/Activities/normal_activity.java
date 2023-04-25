@@ -1,9 +1,8 @@
-package com.example.picture_match_puzzel;
+package com.example.picture_match_puzzel.Activities;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +10,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
+
+import com.example.picture_match_puzzel.Adapters.lavel_adapter;
+import com.example.picture_match_puzzel.R;
 
 public class normal_activity extends AppCompatActivity {
 
