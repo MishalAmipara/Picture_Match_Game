@@ -1,17 +1,14 @@
 package com.example.picture_match_puzzel.Adapters;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 
-import androidx.core.content.ContextCompat;
-
-import com.example.picture_match_puzzel.Activities.No_Time_Activity;
 import com.example.picture_match_puzzel.Activities.level_play_activity;
 import com.example.picture_match_puzzel.R;
 
@@ -19,13 +16,17 @@ public class lavel_adapter extends BaseAdapter
 {
     Context context;
     Button button;
-    public lavel_adapter(Context context) {
+    String status;
+    SharedPreferences preferences;
+    int level[]={1,2,3,4,5,6,7,8,9,10};
+    public lavel_adapter(Context context, SharedPreferences preferences) {
+        this.preferences= context.getSharedPreferences("pre",Context.MODE_PRIVATE);
         this.context=context;
     }
 
     @Override
     public int getCount() {
-        return 10;
+        return level.length;
     }
 
     @Override
@@ -42,12 +43,15 @@ public class lavel_adapter extends BaseAdapter
     public View getView(int i, View view, ViewGroup viewGroup) {
         view= LayoutInflater.from(context).inflate(R.layout.level_iteam_view,viewGroup,false);
         button=view.findViewById(R.id.level_button);
-        button.setText("Level "+(i+1));
+        button.setText("Level "+level[i]);
+        status=preferences.getString("status","default");
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 System.out.println("Clicked");
                 Intent intent = new Intent(context, level_play_activity.class);
+                intent.putExtra("status",status);
+                intent.putExtra("level",level[i]);
                 context.startActivity(intent);
             }
         });

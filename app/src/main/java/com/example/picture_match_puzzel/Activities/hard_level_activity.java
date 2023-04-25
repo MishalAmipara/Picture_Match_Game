@@ -4,10 +4,9 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
-import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
 
@@ -17,21 +16,20 @@ import com.example.picture_match_puzzel.R;
 public class hard_level_activity extends AppCompatActivity {
     GridView gridView;
     Button button;
+    SharedPreferences preferences;
+    SharedPreferences.Editor editor;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hard_level);
         gridView=findViewById(R.id.hard_grid_view);
         button=findViewById(R.id.warning_button3);
-        lavel_adapter lavelAdapter=new lavel_adapter(hard_level_activity.this);
+        preferences=getSharedPreferences("pre",MODE_PRIVATE);
+        editor= preferences.edit();
+        lavel_adapter lavelAdapter=new lavel_adapter(hard_level_activity.this, preferences);
         gridView.setAdapter(lavelAdapter);
-        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent=new Intent(hard_level_activity.this,level_play_activity.class);
-                startActivity(intent);
-            }
-        });
+        editor.putString("status","hard");
+        editor.commit();
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

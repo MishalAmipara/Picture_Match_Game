@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.ScaleGestureDetector;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -18,23 +20,21 @@ public class No_Time_Activity extends AppCompatActivity {
 
         GridView gridView;
         Button button;
+        SharedPreferences preferences;
+        SharedPreferences.Editor editor;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_no_time);
         gridView=findViewById(R.id.no_time_grid_view);
         button=findViewById(R.id.warning_button1);
-        lavel_adapter lavelAdapter=new lavel_adapter(No_Time_Activity.this);
+        lavel_adapter lavelAdapter=new lavel_adapter(No_Time_Activity.this,preferences);
         gridView.setAdapter(lavelAdapter);
-        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                System.out.println("Clicked");
-                Intent intent = new Intent(No_Time_Activity.this,level_play_activity.class);
-                startActivity(intent);
+       preferences=getSharedPreferences("pre",MODE_PRIVATE);
+       editor=preferences.edit();
+       editor.putString("status","notime");
+       editor.commit();
 
-            }
-        });
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

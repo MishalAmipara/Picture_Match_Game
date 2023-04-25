@@ -4,10 +4,9 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
-import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
 
@@ -18,6 +17,8 @@ public class normal_activity extends AppCompatActivity {
 
     GridView gridView;
     Button button;
+    SharedPreferences preferences;
+    SharedPreferences.Editor editor;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,16 +26,12 @@ public class normal_activity extends AppCompatActivity {
         button=findViewById(R.id.warning_button2);
 
         gridView=findViewById(R.id.normal_grid_view);
-        lavel_adapter lavelAdapter=new lavel_adapter(normal_activity.this);
+        lavel_adapter lavelAdapter=new lavel_adapter(normal_activity.this, preferences);
         gridView.setAdapter(lavelAdapter);
-        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
-                Intent intent = new Intent(normal_activity.this, level_play_activity.class);
-                startActivity(intent);
-            }
-        });
+        preferences=getSharedPreferences("pre",MODE_PRIVATE);
+        editor= preferences.edit();
+        editor.putString("status","normal");
+        editor.commit();
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
