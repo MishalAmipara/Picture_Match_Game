@@ -20,6 +20,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class level_play_activity extends AppCompatActivity {
@@ -39,23 +41,24 @@ public class level_play_activity extends AppCompatActivity {
         gridView=findViewById(R.id.grid_view_play);
 
 
+
         String [] images =new String[0];
         try {
-            images=getAssets().list("/images");
-            imagearr=new ArrayList<>(Arrays.asList(images));
+            images=getAssets().list("");
+            imagearr=new ArrayList<String>(Arrays.asList(images));
         } catch (IOException e) {
             e.printStackTrace();
         }
-        arraylist= (List<String>) imagearr.clone();
-        InputStream inputStream=null;
-        try {
-            inputStream=getAssets().open("/images"+ imagearr.get(level ));
-            Drawable drawable =Drawable.createFromStream(inputStream,null);
-            inputStream.close();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        play_adapter playAdapter=new play_adapter(level_play_activity.this,imagearr);
+
+
+
+        arraylist=imagearr.subList(0,15);
+
+        arraylist.addAll(arraylist);
+        Collections.shuffle(arraylist);
+        play_adapter playAdapter=new play_adapter(level_play_activity.this,arraylist);
+        gridView.setAdapter(playAdapter);
+
     }
 
 }

@@ -6,8 +6,16 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    android:background="#67C8D5"
+    android:background="#E3F4F3"
     tools:context=".Activities.MainActivity">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_480sdp"
+        android:orientation="vertical"
+
+
+        android:background="@drawable/main"
+        android:gravity="center">
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -85,5 +93,5 @@
         android:id="@+id/more_game_button"
         />
     </LinearLayout>
-
+    </LinearLayout>
 </LinearLayout>

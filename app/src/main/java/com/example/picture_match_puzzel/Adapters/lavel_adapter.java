@@ -16,17 +16,17 @@ public class lavel_adapter extends BaseAdapter
 {
     Context context;
     Button button;
-    String status;
     SharedPreferences preferences;
-    int level[]={1,2,3,4,5,6,7,8,9,10};
+    public  static  int level[]={1,2,3,4,5,6,7,8,9,10};
+    public static  String status=null;
     public lavel_adapter(Context context, SharedPreferences preferences) {
-        this.preferences= context.getSharedPreferences("pre",Context.MODE_PRIVATE);
         this.context=context;
+        this.preferences=context.getSharedPreferences("pre",Context.MODE_PRIVATE);
     }
 
     @Override
     public int getCount() {
-        return level.length;
+        return 10;
     }
 
     @Override
@@ -50,8 +50,8 @@ public class lavel_adapter extends BaseAdapter
             public void onClick(View view) {
                 System.out.println("Clicked");
                 Intent intent = new Intent(context, level_play_activity.class);
-                intent.putExtra("status",status);
                 intent.putExtra("level",level[i]);
+                intent.putExtra("status",status);
                 context.startActivity(intent);
             }
         });

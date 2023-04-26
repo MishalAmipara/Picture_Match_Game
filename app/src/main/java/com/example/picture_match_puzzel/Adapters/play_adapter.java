@@ -1,5 +1,6 @@
 package com.example.picture_match_puzzel.Adapters;
 
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,18 +10,22 @@ import android.widget.ImageView;
 import com.example.picture_match_puzzel.Activities.level_play_activity;
 import com.example.picture_match_puzzel.R;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.List;
 
 public class play_adapter extends BaseAdapter
 {
     level_play_activity level_play_activity;
-    ArrayList<String> imagearr=new ArrayList<>();
+    List<String> imagearr = new ArrayList<>();
     ImageView imageView;
+
     View view1;
-    public play_adapter(level_play_activity level_play_activity, ArrayList<String> imagearr)
+    public play_adapter(level_play_activity level_play_activity, List<String> arraylist)
     {
         this.level_play_activity=level_play_activity;
-        this.imagearr=imagearr;
+        this.imagearr=arraylist;
 
     }
 
@@ -31,12 +36,12 @@ public class play_adapter extends BaseAdapter
 
     @Override
     public Object getItem(int i) {
-        return null;
+        return i;
     }
 
     @Override
     public long getItemId(int i) {
-        return 0;
+        return i;
     }
 
     @Override
@@ -44,8 +49,18 @@ public class play_adapter extends BaseAdapter
         view= LayoutInflater.from(level_play_activity).inflate(R.layout.play_iteam_layout,viewGroup,false);
         imageView=view.findViewById(R.id.imageview_play);
         view1=view.findViewById(R.id.view_play);
-        imageView.setImageResource(Integer.parseInt(imagearr.get(i)));
-        view1.setVisibility(View.GONE);
+        InputStream inputStream=null;
+        try {
+            inputStream=level_play_activity.getAssets().open(""+ imagearr.get(i));
+            Drawable drawable =Drawable.createFromStream(inputStream,null);
+            imageView.setImageDrawable(drawable);
+            inputStream.close();
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+//        view1.setVisibility(View.GONE);
         return view;
     }
 }
