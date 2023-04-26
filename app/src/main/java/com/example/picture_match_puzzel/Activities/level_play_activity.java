@@ -31,6 +31,7 @@ public class level_play_activity extends AppCompatActivity {
     List<String>arraylist=new ArrayList<>();
     ProgressBar progressBar;
     GridView gridView;
+    int numimage,collum;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +40,11 @@ public class level_play_activity extends AppCompatActivity {
         status=getIntent().getStringExtra("status");
         progressBar=findViewById(R.id.progress);
         gridView=findViewById(R.id.grid_view_play);
-
+        if (level<=3)
+        {
+                    numimage=8;
+                    collum=4;
+        }
 
 
         String [] images =new String[0];
@@ -52,12 +57,17 @@ public class level_play_activity extends AppCompatActivity {
 
 
 
-        arraylist=imagearr.subList(0,15);
+        arraylist=imagearr.subList(0,numimage);
 
         arraylist.addAll(arraylist);
         Collections.shuffle(arraylist);
         play_adapter playAdapter=new play_adapter(level_play_activity.this,arraylist);
-        gridView.setAdapter(playAdapter);
+
+        if (level<=3)
+        {
+            gridView.setNumColumns(collum);
+            gridView.setAdapter(playAdapter);
+        }
 
     }
 
