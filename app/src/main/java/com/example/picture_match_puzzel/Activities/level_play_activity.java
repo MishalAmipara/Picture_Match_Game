@@ -5,6 +5,7 @@ package com.example.picture_match_puzzel.Activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.widget.Adapter;
@@ -31,7 +32,9 @@ public class level_play_activity extends AppCompatActivity {
     List<String>arraylist=new ArrayList<>();
     ProgressBar progressBar;
     GridView gridView;
-    int numimage,collum;
+    SharedPreferences preferences;
+    SharedPreferences.Editor editor;
+     int numimage,collum;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,10 +43,20 @@ public class level_play_activity extends AppCompatActivity {
         status=getIntent().getStringExtra("status");
         progressBar=findViewById(R.id.progress);
         gridView=findViewById(R.id.grid_view_play);
-        if (level<=3)
+        preferences=getSharedPreferences("pre",MODE_PRIVATE);
+        editor=preferences.edit();
+
+        if (level<=3) {
+            numimage = 6;
+            collum = 3;
+        }else if(level<=6)
         {
-                    numimage=8;
-                    collum=4;
+            numimage=8;
+            collum=4;
+        }else if(level<=10)
+        {
+            numimage=10;
+            collum=4;
         }
 
 
@@ -68,6 +81,17 @@ public class level_play_activity extends AppCompatActivity {
             gridView.setNumColumns(collum);
             gridView.setAdapter(playAdapter);
         }
+        if (level<=6)
+        {
+            gridView.setNumColumns(collum);
+            gridView.setAdapter(playAdapter);
+        }
+        if (level<=10)
+        {
+            gridView.setNumColumns(collum);
+            gridView.setAdapter(playAdapter);
+        }
+
 
     }
 
