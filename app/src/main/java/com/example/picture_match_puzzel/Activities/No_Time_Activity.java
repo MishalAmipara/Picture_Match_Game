@@ -1,5 +1,6 @@
 package com.example.picture_match_puzzel.Activities;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -34,8 +35,10 @@ public class No_Time_Activity extends AppCompatActivity {
        editor=preferences.edit();
        editor.putString("status","notime");
        editor.commit();
-
-        button.setOnClickListener(new View.OnClickListener() {
+        String actionBarTitle=getIntent().getStringExtra("level");
+        getSupportActionBar().setTitle(actionBarTitle);
+        button.setOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(View view) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(No_Time_Activity.this);

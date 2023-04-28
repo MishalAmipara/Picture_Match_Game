@@ -46,7 +46,8 @@ public class level_play_activity extends AppCompatActivity {
         preferences=getSharedPreferences("pre",MODE_PRIVATE);
         editor=preferences.edit();
 
-        if (level<=3) {
+        if (level<=3)
+        {
             numimage = 6;
             collum = 3;
         }else if(level<=6)
@@ -76,21 +77,10 @@ public class level_play_activity extends AppCompatActivity {
         Collections.shuffle(arraylist);
         play_adapter playAdapter=new play_adapter(level_play_activity.this,arraylist);
 
-        if (level<=3)
-        {
+
             gridView.setNumColumns(collum);
             gridView.setAdapter(playAdapter);
-        }
-        if (level<=6)
-        {
-            gridView.setNumColumns(collum);
-            gridView.setAdapter(playAdapter);
-        }
-        if (level<=10)
-        {
-            gridView.setNumColumns(collum);
-            gridView.setAdapter(playAdapter);
-        }
+
 
 
     }

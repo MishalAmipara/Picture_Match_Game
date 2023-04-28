@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (view.getId()==time.getId())
         {
             Intent intent =new Intent(MainActivity.this,No_Time_Activity.class);
+            intent.putExtra("level","Not Time Limit");
             startActivity(intent);
         }
         if (view.getId()==normal.getId())

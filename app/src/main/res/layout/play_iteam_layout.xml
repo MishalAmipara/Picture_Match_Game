@@ -4,7 +4,8 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_weight="1"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:id="@+id/relativeLayout">
 
 
     <ImageView
@@ -23,6 +24,6 @@
         android:id="@+id/view_play"
         android:background="@drawable/border_layaout"
         android:layout_margin="@dimen/_1sdp"
-        android:visibility="visible"></View>
+        android:visibility="invisible"></View>
 
 </RelativeLayout>
