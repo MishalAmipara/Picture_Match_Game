@@ -13,6 +13,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.TextView;
+import android.widget.Toolbar;
 
 import com.example.picture_match_puzzel.Adapters.lavel_adapter;
 import com.example.picture_match_puzzel.R;
@@ -20,9 +22,12 @@ import com.example.picture_match_puzzel.R;
 public class No_Time_Activity extends AppCompatActivity {
 
         GridView gridView;
-        Button button;
+        Button button,back;
         SharedPreferences preferences;
         SharedPreferences.Editor editor;
+        TextView textView;
+        Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +41,24 @@ public class No_Time_Activity extends AppCompatActivity {
        editor.putString("status","notime");
        editor.commit();
         String actionBarTitle=getIntent().getStringExtra("level");
-        getSupportActionBar().setTitle(actionBarTitle);
+        toolbar=findViewById(R.id.Toolbar);
+        textView=findViewById(R.id.Time_text_view);
+        back=findViewById(R.id.back_button);
+
+
+        textView.setText(actionBarTitle);
+        setActionBar(toolbar);
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(No_Time_Activity.this,MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+
         button.setOnClickListener(new View.OnClickListener()
         {
             @Override

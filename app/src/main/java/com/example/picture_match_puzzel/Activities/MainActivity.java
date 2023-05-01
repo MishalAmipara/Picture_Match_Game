@@ -8,12 +8,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toolbar;
 
 import com.example.picture_match_puzzel.R;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener
 {
     Button time,normal,hard,removeads,share,moregame;
+    Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -25,6 +27,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         removeads=findViewById(R.id.remove_add);
         share=findViewById(R.id.share_button);
         moregame=findViewById(R.id.more_game_button);
+//        getSupportActionBar().setTitle("Select Mode");
+        toolbar=findViewById(R.id.Tool_Bar);
+        setActionBar(toolbar);
 
         time.setOnClickListener(this);
         normal.setOnClickListener(this);

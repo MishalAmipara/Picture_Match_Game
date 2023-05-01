@@ -5,13 +5,18 @@ package com.example.picture_match_puzzel.Activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Adapter;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.Toolbar;
 ;
 
 import com.example.picture_match_puzzel.Adapters.play_adapter;
@@ -35,6 +40,10 @@ public class level_play_activity extends AppCompatActivity {
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
      int numimage,collum;
+     TextView textView;
+     Toolbar toolbar;
+     Button back;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,7 +54,37 @@ public class level_play_activity extends AppCompatActivity {
         gridView=findViewById(R.id.grid_view_play);
         preferences=getSharedPreferences("pre",MODE_PRIVATE);
         editor=preferences.edit();
+        toolbar=findViewById(R.id.Toolbar);
+        textView=findViewById(R.id.Time_text_view);
+        back=findViewById(R.id.back_button);
 
+
+        textView.setText("Time: 23/8");
+        setActionBar(toolbar);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (status.equals("notime")) {
+                    Intent intent = new Intent(level_play_activity.this, No_Time_Activity.class);
+                    startActivity(intent);
+
+                }
+                if (status.equals("hard")) {
+                    Intent intent = new Intent(level_play_activity.this, hard_level_activity.class);
+
+                    startActivity(intent);
+
+                }
+                if (status.equals("Normal")) {
+                    Intent intent = new Intent(level_play_activity.this, normal_activity.class);
+
+                    startActivity(intent);
+
+                }
+                finish();
+
+            }
+        });
         if (level<=3)
         {
             numimage = 6;

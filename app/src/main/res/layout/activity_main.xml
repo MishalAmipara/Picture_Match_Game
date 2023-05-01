@@ -4,16 +4,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
+
     android:orientation="vertical"
     android:background="#E3F4F3"
     tools:context=".Activities.MainActivity">
+    <Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/Tool_Bar"
+        android:background="@color/teal_700">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select Mode"
+            android:textStyle="bold"
+            android:textSize="@dimen/_20sdp"></TextView>
+    </Toolbar>
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="@dimen/_480sdp"
         android:orientation="vertical"
 
-
+android:layout_marginTop="@dimen/_40sdp"
         android:background="@drawable/main"
         android:gravity="center">
     <LinearLayout

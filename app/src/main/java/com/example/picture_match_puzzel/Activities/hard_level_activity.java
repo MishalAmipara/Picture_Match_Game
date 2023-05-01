@@ -4,20 +4,25 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.TextView;
+import android.widget.Toolbar;
 
 import com.example.picture_match_puzzel.Adapters.lavel_adapter;
 import com.example.picture_match_puzzel.R;
 
 public class hard_level_activity extends AppCompatActivity {
     GridView gridView;
-    Button button;
+    Button button,back;
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
+    TextView textView;
+    Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +35,22 @@ public class hard_level_activity extends AppCompatActivity {
         gridView.setAdapter(lavelAdapter);
         editor.putString("status","hard");
         editor.commit();
+       // getSupportActionBar().setTitle("Hard");
+        toolbar=findViewById(R.id.Toolbar);
+        textView=findViewById(R.id.Time_text_view);
+        back=findViewById(R.id.back_button);
+
+
+        textView.setText("Hard");
+        setActionBar(toolbar);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(hard_level_activity.this,MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
