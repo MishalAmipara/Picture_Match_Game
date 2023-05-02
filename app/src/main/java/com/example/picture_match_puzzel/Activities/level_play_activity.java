@@ -5,10 +5,12 @@ package com.example.picture_match_puzzel.Activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.BaseAdapter;
@@ -42,7 +44,8 @@ public class level_play_activity extends AppCompatActivity {
      int numimage,collum;
      TextView textView;
      Toolbar toolbar;
-     Button back;
+     Button back,go;
+    TextView textView1,textView2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +62,7 @@ public class level_play_activity extends AppCompatActivity {
         back=findViewById(R.id.back_button);
 
 
-        textView.setText("Time: 23/8");
+
         setActionBar(toolbar);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -114,11 +117,32 @@ public class level_play_activity extends AppCompatActivity {
 
         arraylist.addAll(arraylist);
         Collections.shuffle(arraylist);
-        play_adapter playAdapter=new play_adapter(level_play_activity.this,arraylist);
+        Dialog dialog=new Dialog(this);
+        dialog.setContentView(R.layout.time_show_diloge);
+        textView1=dialog.findViewById(R.id.time_give_txt);
+        textView2=dialog.findViewById(R.id.tips_txt);
+        go=dialog.findViewById(R.id.go_button);
+        textView1.setText("Time : "+status);
+        textView2.setText("You Have 5 Second To Memorize "+"\n"+"All Images");
+        dialog.show();
+
+        go.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                play_adapter playAdapter=new play_adapter(level_play_activity.this,arraylist,progressBar,textView);
+                gridView.setNumColumns(collum);
+                gridView.setAdapter(playAdapter);
+                dialog.cancel();
+            }
+        });
 
 
-            gridView.setNumColumns(collum);
-            gridView.setAdapter(playAdapter);
+
+
+
+
+
+
 
 
 

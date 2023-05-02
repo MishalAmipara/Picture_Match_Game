@@ -3,6 +3,7 @@ package com.example.picture_match_puzzel.Activities;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ActionBar;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -27,9 +28,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         removeads=findViewById(R.id.remove_add);
         share=findViewById(R.id.share_button);
         moregame=findViewById(R.id.more_game_button);
-//        getSupportActionBar().setTitle("Select Mode");
+
+        //getSupportActionBar().setTitle("Select Mode");
         toolbar=findViewById(R.id.Tool_Bar);
-        setActionBar(toolbar);
+        //setActionBar(toolbar);
 
         time.setOnClickListener(this);
         normal.setOnClickListener(this);

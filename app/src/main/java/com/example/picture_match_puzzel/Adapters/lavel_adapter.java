@@ -1,5 +1,7 @@
 package com.example.picture_match_puzzel.Adapters;
 
+import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -8,14 +10,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.picture_match_puzzel.Activities.level_play_activity;
 import com.example.picture_match_puzzel.R;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 public class lavel_adapter extends BaseAdapter
 {
     Context context;
-    Button button;
+    Button button,go;
+
     SharedPreferences preferences;
     public  static  int level[]={1,2,3,4,5,6,7,8,9,10};
     public static  String status=null;
@@ -49,6 +54,7 @@ public class lavel_adapter extends BaseAdapter
             @Override
             public void onClick(View view) {
                 System.out.println("Clicked");
+
                 Intent intent = new Intent(context, level_play_activity.class);
                 intent.putExtra("level",level[i]);
                 intent.putExtra("status",status);
