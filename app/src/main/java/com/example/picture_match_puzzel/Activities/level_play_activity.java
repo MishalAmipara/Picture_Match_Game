@@ -129,7 +129,7 @@ public class level_play_activity extends AppCompatActivity {
         go.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                play_adapter playAdapter=new play_adapter(level_play_activity.this,arraylist,progressBar,textView);
+                play_adapter playAdapter=new play_adapter(level_play_activity.this,preferences,arraylist,progressBar,textView);
                 gridView.setNumColumns(collum);
                 gridView.setAdapter(playAdapter);
                 dialog.cancel();

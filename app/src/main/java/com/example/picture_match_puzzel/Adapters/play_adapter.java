@@ -1,5 +1,9 @@
 package com.example.picture_match_puzzel.Adapters;
 
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -11,9 +15,13 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toolbar;
 
+import androidx.appcompat.app.AlertDialog;
+
+import com.example.picture_match_puzzel.Activities.No_Time_Activity;
+import com.example.picture_match_puzzel.Activities.hard_level_activity;
 import com.example.picture_match_puzzel.Activities.level_play_activity;
+import com.example.picture_match_puzzel.Activities.normal_activity;
 import com.example.picture_match_puzzel.R;
 
 import java.io.IOException;
@@ -27,14 +35,19 @@ public class play_adapter extends BaseAdapter
     List<String> imagearr = new ArrayList<>();
     ProgressBar progressBar;
     View firstview;
-    int click = 1,pos1=0,pos2=0;
+
+    int click = 1,pos1=0,pos2=0,count=0;
+    SharedPreferences preferences;
+    SharedPreferences.Editor editor;
    TextView toolbar;
     Runnable runnable;
-    public play_adapter(level_play_activity level_play_activity, List<String> arraylist, ProgressBar progressBar, TextView toolbar)
+    public play_adapter(level_play_activity level_play_activity, SharedPreferences preferences, List<String> arraylist, ProgressBar progressBar, TextView toolbar)
     {
         this.level_play_activity=level_play_activity;
         this.imagearr=arraylist;
         this.progressBar=progressBar;
+        this.preferences=level_play_activity.getSharedPreferences("pre", Context.MODE_PRIVATE);
+        editor=preferences.edit();
         this.toolbar=toolbar;
     }
 
@@ -134,6 +147,51 @@ public class play_adapter extends BaseAdapter
                     runnable = new Runnable() {
                         public void run() {
                             click = 1;
+                            count++;
+                            if (count==6 ||count==8|| count==10) {
+                                editor.putInt("count", count);
+                                editor.putString("levels"+i,"Win");
+                                editor.putInt("lastlevel",i);
+
+                                editor.commit();
+                                AlertDialog.Builder builder=new AlertDialog.Builder(level_play_activity);
+                                builder.setTitle("Congrats");
+                                builder.setMessage("YOU WON THIS LEVEL");
+                                String staus=preferences.getString("status","default");
+
+                                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        if (staus.equals("notime")) {
+                                            Intent intent = new Intent(level_play_activity, No_Time_Activity.class);
+                                            intent.putExtra("level",i+1);
+                                            level_play_activity.startActivity(intent);
+
+                                        }
+                                        if (staus.equals("hard")) {
+                                            Intent intent = new Intent(level_play_activity, hard_level_activity.class);
+                                            intent.putExtra("level",i+1);
+                                           level_play_activity. startActivity(intent);
+
+                                        }
+                                        if (staus.equals("Normal")) {
+                                            Intent intent = new Intent(level_play_activity, normal_activity.class);
+                                            intent.putExtra("level",i+1);
+                                            level_play_activity.startActivity(intent);
+
+                                        }
+                                       level_play_activity. finish();
+
+                                    }
+                                });
+                                builder.show();
+                            }
+                            else
+                            {
+
+                                editor.putInt("lastlevel",i);
+                                editor.commit();
+                            }
                         }
                     };
                     //handler.postAtTime(runnable, System.currentTimeMillis() + interval);

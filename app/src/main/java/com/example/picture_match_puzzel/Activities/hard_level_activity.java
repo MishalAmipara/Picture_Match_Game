@@ -34,6 +34,7 @@ public class hard_level_activity extends AppCompatActivity {
         lavel_adapter lavelAdapter=new lavel_adapter(hard_level_activity.this, preferences);
         gridView.setAdapter(lavelAdapter);
         editor.putString("status","hard");
+        editor.putInt("lastlevel",-1);
         editor.commit();
        // getSupportActionBar().setTitle("Hard");
         toolbar=findViewById(R.id.Toolbar);

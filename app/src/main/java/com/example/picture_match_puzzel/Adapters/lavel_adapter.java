@@ -50,17 +50,29 @@ public class lavel_adapter extends BaseAdapter
         button=view.findViewById(R.id.level_button);
         button.setText("Level "+level[i]);
         status=preferences.getString("status","default");
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                System.out.println("Clicked");
+        String levels=preferences.getString("levels"+i,"default");
+        int lastlevel=preferences.getInt("lastlevel",-1);
+        if (levels.equals("Win"))
+        {
+            button.setVisibility(View.VISIBLE);
+        }
+        if ( i==lastlevel+1)
+        {
+            button.setVisibility(View.VISIBLE);
+        }
+        if (levels.equals("Win") || i==lastlevel+1) {
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    System.out.println("Clicked");
 
-                Intent intent = new Intent(context, level_play_activity.class);
-                intent.putExtra("level",level[i]);
-                intent.putExtra("status",status);
-                context.startActivity(intent);
-            }
-        });
+                    Intent intent = new Intent(context, level_play_activity.class);
+                    intent.putExtra("level", level[i]);
+                    intent.putExtra("status", status);
+                    context.startActivity(intent);
+                }
+            });
+        }
         return view;
     }
 }

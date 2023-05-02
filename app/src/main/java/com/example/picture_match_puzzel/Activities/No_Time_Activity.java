@@ -39,6 +39,7 @@ public class No_Time_Activity extends AppCompatActivity {
        preferences=getSharedPreferences("pre",MODE_PRIVATE);
        editor=preferences.edit();
        editor.putString("status","notime");
+        editor.putInt("lastlevel",-1);
        editor.commit();
         String actionBarTitle=getIntent().getStringExtra("level");
         toolbar=findViewById(R.id.Toolbar);

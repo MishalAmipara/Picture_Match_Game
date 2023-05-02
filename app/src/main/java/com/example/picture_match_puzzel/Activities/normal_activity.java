@@ -51,6 +51,7 @@ public class normal_activity extends AppCompatActivity {
         gridView.setAdapter(lavelAdapter);
         preferences=getSharedPreferences("pre",MODE_PRIVATE);
         editor= preferences.edit();
+        editor.putInt("lastlevel",-1);
         editor.putString("status","normal");
         editor.commit();
         button.setOnClickListener(new View.OnClickListener() {
