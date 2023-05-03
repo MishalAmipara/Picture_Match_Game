@@ -60,10 +60,12 @@ public class lavel_adapter extends BaseAdapter
         {
             button.setVisibility(View.VISIBLE);
         }
-        if (levels.equals("Win") || i==lastlevel+1) {
+
             button.setOnClickListener(new View.OnClickListener() {
+
                 @Override
                 public void onClick(View view) {
+                    if (levels.equals("Win") || i==lastlevel+1) {
                     System.out.println("Clicked");
 
                     Intent intent = new Intent(context, level_play_activity.class);
@@ -71,8 +73,9 @@ public class lavel_adapter extends BaseAdapter
                     intent.putExtra("status", status);
                     context.startActivity(intent);
                 }
+                }
             });
-        }
+
         return view;
     }
 }

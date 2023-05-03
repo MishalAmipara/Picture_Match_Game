@@ -61,8 +61,8 @@ public class level_play_activity extends AppCompatActivity {
         textView=findViewById(R.id.Time_text_view);
         back=findViewById(R.id.back_button);
 
-
-
+        editor.putInt("level",level);
+        editor.commit();
         setActionBar(toolbar);
         back.setOnClickListener(new View.OnClickListener() {
             @Override

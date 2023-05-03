@@ -100,6 +100,20 @@ public class play_adapter extends BaseAdapter
             public void onFinish() {
                 startGame(relativeLayout,i,view1);
                 view1.setVisibility(View.VISIBLE);
+                new CountDownTimer(100000, 1000) {
+                    @Override
+                    public void onTick(long l) {
+                        progressBar.setMax(100);
+                        int time= (int) (l/1000);
+
+                        toolbar.setText("Time: "+(progressBar.getMax()-time)+"/0");
+                    }
+
+                    @Override
+                    public void onFinish() {
+
+                    }
+                }.start();
             }
 
         }.start();
@@ -144,12 +158,14 @@ public class play_adapter extends BaseAdapter
                 System.out.println("second click");
                 if (imagearr.get(pos1).equals(imagearr.get(pos2))) {
                     System.out.println("match");
+                    count++;
+                    System.out.println("cnt=="+count);
                     runnable = new Runnable() {
                         public void run() {
                             click = 1;
-                            count++;
-                            if (count==6 ||count==8|| count==10) {
-                                editor.putInt("count", count);
+                            int level=preferences.getInt("level",0);
+                            if (count==6 &&level<=3) {
+
                                 editor.putString("levels"+i,"Win");
                                 editor.putInt("lastlevel",i);
 
@@ -161,22 +177,25 @@ public class play_adapter extends BaseAdapter
 
                                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                     @Override
-                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                    public void onClick(DialogInterface dialogInterface, int i1                                                                 ) {
                                         if (staus.equals("notime")) {
                                             Intent intent = new Intent(level_play_activity, No_Time_Activity.class);
                                             intent.putExtra("level",i+1);
+
                                             level_play_activity.startActivity(intent);
 
                                         }
                                         if (staus.equals("hard")) {
                                             Intent intent = new Intent(level_play_activity, hard_level_activity.class);
                                             intent.putExtra("level",i+1);
+
                                            level_play_activity. startActivity(intent);
 
                                         }
                                         if (staus.equals("Normal")) {
                                             Intent intent = new Intent(level_play_activity, normal_activity.class);
                                             intent.putExtra("level",i+1);
+
                                             level_play_activity.startActivity(intent);
 
                                         }
@@ -186,11 +205,91 @@ public class play_adapter extends BaseAdapter
                                 });
                                 builder.show();
                             }
-                            else
+                            else if (count==8 && (level>=4&&level<=6))
                             {
-
+                                editor.putString("levels"+i,"Win");
                                 editor.putInt("lastlevel",i);
+
                                 editor.commit();
+                                AlertDialog.Builder builder=new AlertDialog.Builder(level_play_activity);
+                                builder.setTitle("Congrats");
+                                builder.setMessage("YOU WON THIS LEVEL");
+                                String staus=preferences.getString("status","default");
+
+                                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i1                                                                 ) {
+                                        if (staus.equals("notime")) {
+                                            Intent intent = new Intent(level_play_activity, No_Time_Activity.class);
+                                            intent.putExtra("level",i+1);
+
+                                            level_play_activity.startActivity(intent);
+
+                                        }
+                                        if (staus.equals("hard")) {
+                                            Intent intent = new Intent(level_play_activity, hard_level_activity.class);
+                                            intent.putExtra("level",i+1);
+
+                                            level_play_activity. startActivity(intent);
+
+                                        }
+                                        if (staus.equals("Normal")) {
+                                            Intent intent = new Intent(level_play_activity, normal_activity.class);
+                                            intent.putExtra("level",i+1);
+
+                                            level_play_activity.startActivity(intent);
+
+                                        }
+                                        level_play_activity. finish();
+
+                                    }
+                                });
+                                builder.show();
+
+
+                            }
+                            else if (count==10 && (level>=7&&level<=10))
+                            {
+                                editor.putString("levels"+i,"Win");
+                                editor.putInt("lastlevel",i);
+
+                                editor.commit();
+                                AlertDialog.Builder builder=new AlertDialog.Builder(level_play_activity);
+                                builder.setTitle("Congrats");
+                                builder.setMessage("YOU WON THIS LEVEL");
+                                String staus=preferences.getString("status","default");
+
+                                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i1                                                                 ) {
+                                        if (staus.equals("notime")) {
+                                            Intent intent = new Intent(level_play_activity, No_Time_Activity.class);
+                                            intent.putExtra("level",i+1);
+
+                                            level_play_activity.startActivity(intent);
+
+                                        }
+                                        if (staus.equals("hard")) {
+                                            Intent intent = new Intent(level_play_activity, hard_level_activity.class);
+                                            intent.putExtra("level",i+1);
+
+                                            level_play_activity. startActivity(intent);
+
+                                        }
+                                        if (staus.equals("Normal")) {
+                                            Intent intent = new Intent(level_play_activity, normal_activity.class);
+                                            intent.putExtra("level",i+1);
+
+                                            level_play_activity.startActivity(intent);
+
+                                        }
+                                        level_play_activity. finish();
+
+                                    }
+                                });
+                                builder.show();
+
+
                             }
                         }
                     };
