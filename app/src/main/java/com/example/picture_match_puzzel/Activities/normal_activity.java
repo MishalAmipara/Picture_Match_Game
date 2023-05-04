@@ -45,15 +45,15 @@ public class normal_activity extends AppCompatActivity {
                 finish();
             }
         });
-
+        preferences=getSharedPreferences("pre",MODE_PRIVATE);
+        editor= preferences.edit();
+        editor.putInt("lastlevel",-1);
+        editor.putString("status","normal");
+        editor.commit();
         gridView=findViewById(R.id.normal_grid_view);
         lavel_adapter lavelAdapter=new lavel_adapter(normal_activity.this, preferences);
         gridView.setAdapter(lavelAdapter);
-        preferences=getSharedPreferences("pre",MODE_PRIVATE);
-        editor= preferences.edit();
-        editor.putInt("lastlevel",0);
-        editor.putString("status","normal");
-        editor.commit();
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

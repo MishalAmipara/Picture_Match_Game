@@ -44,6 +44,7 @@ public class level_play_activity extends AppCompatActivity {
      int numimage,collum;
      TextView textView;
      Toolbar toolbar;
+     int maxtime,delaytime;
      Button back,go;
     TextView textView1,textView2;
 
@@ -52,7 +53,7 @@ public class level_play_activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_level_play);
         level=getIntent().getIntExtra("level",0);
-        status=getIntent().getStringExtra("status");
+
         progressBar=findViewById(R.id.progress);
         gridView=findViewById(R.id.grid_view_play);
         preferences=getSharedPreferences("pre",MODE_PRIVATE);
@@ -60,7 +61,7 @@ public class level_play_activity extends AppCompatActivity {
         toolbar=findViewById(R.id.Toolbar);
         textView=findViewById(R.id.Time_text_view);
         back=findViewById(R.id.back_button);
-
+status=preferences.getString("status","default");
         editor.putInt("level",level);
         editor.commit();
         setActionBar(toolbar);
@@ -88,21 +89,59 @@ public class level_play_activity extends AppCompatActivity {
 
             }
         });
-        if (level<=3)
-        {
-            numimage = 6;
-            collum = 3;
-        }else if(level<=6)
-        {
-            numimage=8;
-            collum=4;
-        }else if(level<=10)
-        {
-            numimage=10;
-            collum=4;
+        if (status.equals("notime")) {
+            if (level <= 3) {
+                numimage = 6;
+                delaytime=5;
+                maxtime=100;
+                collum = 3;
+            } else if (level > 3 && level <= 6) {
+                numimage = 8;
+                delaytime=7;
+                maxtime=125;
+                collum = 4;
+            } else if (level > 6 && level <= 10) {
+                numimage = 10;
+                delaytime=9;
+                maxtime=150;
+                collum = 4;
+            }
         }
-
-
+        if (status.equals("normal")) {
+            if (level <= 3) {
+                numimage = 6;
+                delaytime=5;
+                maxtime=15;
+                collum = 3;
+            } else if (level > 3 && level <= 6) {
+                numimage = 8;
+                delaytime=7;
+                maxtime=25;
+                collum = 4;
+            } else if (level > 6 && level <= 10) {
+                numimage = 10;
+                delaytime=9;
+                maxtime=40;
+                collum = 4;
+            }
+        }if (status.equals("hard")) {
+            if (level <= 3) {
+                numimage = 6;
+                delaytime=5;
+                maxtime=5;
+                collum = 3;
+            } else if (level > 3 && level <= 6) {
+                numimage = 8;
+                delaytime=7;
+                maxtime=20;
+                collum = 4;
+            } else if (level > 6 && level <= 10) {
+                numimage = 10;
+                delaytime=9;
+                maxtime=30;
+                collum = 4;
+            }
+        }
         String [] images =new String[0];
         try {
             images=getAssets().list("");
@@ -129,7 +168,7 @@ public class level_play_activity extends AppCompatActivity {
         go.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                play_adapter playAdapter=new play_adapter(level_play_activity.this,preferences,arraylist,progressBar,textView);
+                play_adapter playAdapter=new play_adapter(level_play_activity.this,preferences,arraylist,progressBar,textView,delaytime,maxtime);
                 gridView.setNumColumns(collum);
                 gridView.setAdapter(playAdapter);
                 dialog.cancel();

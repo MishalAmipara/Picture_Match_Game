@@ -31,16 +31,17 @@ public class hard_level_activity extends AppCompatActivity {
         button=findViewById(R.id.warning_button3);
         preferences=getSharedPreferences("pre",MODE_PRIVATE);
         editor= preferences.edit();
+        editor.putString("status","hard");
+
         lavel_adapter lavelAdapter=new lavel_adapter(hard_level_activity.this, preferences);
         gridView.setAdapter(lavelAdapter);
-        editor.putString("status","hard");
-        editor.putInt("lastlevel",0);
-        editor.commit();
+
        // getSupportActionBar().setTitle("Hard");
         toolbar=findViewById(R.id.Toolbar);
         textView=findViewById(R.id.Time_text_view);
         back=findViewById(R.id.back_button);
-
+        editor.putInt("lastlevel",-1);
+        editor.commit();
 
         textView.setText("Hard");
         setActionBar(toolbar);
