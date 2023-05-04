@@ -51,7 +51,8 @@ public class lavel_adapter extends BaseAdapter
         button.setText("Level "+level[i]);
         status=preferences.getString("status","default");
         String levels=preferences.getString("levels"+i,"default");
-        int lastlevel=preferences.getInt("lastlevel",0);
+        int lastlevel=preferences.getInt("lastlevel",-1);
+        System.out.println("Levels="+levels);
         if (levels.equals("Win"))
         {
             button.setVisibility(View.VISIBLE);

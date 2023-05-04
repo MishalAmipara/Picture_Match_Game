@@ -164,10 +164,11 @@ public class play_adapter extends BaseAdapter
                         public void run() {
                             click = 1;
                             int level=preferences.getInt("level",0);
-                            if (count==6 &&level<=3) {
+                            if (count==6 && level>=1&&level<=3) //1
+                            {
 
-                                editor.putString("levels"+i,"Win");
-                                editor.putInt("lastlevel",i);
+                                editor.putString("levels"+level,"Win");//levels1=Win
+                                editor.putInt("lastlevel",level);//lastlevel=1;
 
                                 editor.commit();
                                 AlertDialog.Builder builder=new AlertDialog.Builder(level_play_activity);
@@ -207,8 +208,8 @@ public class play_adapter extends BaseAdapter
                             }
                             else if (count==8 && (level>=4&&level<=6))
                             {
-                                editor.putString("levels"+i,"Win");
-                                editor.putInt("lastlevel",i);
+                                editor.putString("levels"+level,"Win");
+                                editor.putInt("lastlevel",level);
 
                                 editor.commit();
                                 AlertDialog.Builder builder=new AlertDialog.Builder(level_play_activity);
@@ -250,8 +251,8 @@ public class play_adapter extends BaseAdapter
                             }
                             else if (count==10 && (level>=7&&level<=10))
                             {
-                                editor.putString("levels"+i,"Win");
-                                editor.putInt("lastlevel",i);
+                                editor.putString("levels"+level,"Win");
+                                editor.putInt("lastlevel",level);
 
                                 editor.commit();
                                 AlertDialog.Builder builder=new AlertDialog.Builder(level_play_activity);

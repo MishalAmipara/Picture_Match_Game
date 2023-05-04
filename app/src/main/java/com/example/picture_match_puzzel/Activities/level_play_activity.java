@@ -51,8 +51,8 @@ public class level_play_activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_level_play);
-        level=getIntent().getIntExtra("level",0);
-        status=getIntent().getStringExtra("status");
+        level=getIntent().getIntExtra("level",0);//1
+        status=getIntent().getStringExtra("status");//notime
         progressBar=findViewById(R.id.progress);
         gridView=findViewById(R.id.grid_view_play);
         preferences=getSharedPreferences("pre",MODE_PRIVATE);
@@ -61,7 +61,7 @@ public class level_play_activity extends AppCompatActivity {
         textView=findViewById(R.id.Time_text_view);
         back=findViewById(R.id.back_button);
 
-        editor.putInt("level",level);
+        editor.putInt("level",level);//1
         editor.commit();
         setActionBar(toolbar);
         back.setOnClickListener(new View.OnClickListener() {
@@ -88,20 +88,45 @@ public class level_play_activity extends AppCompatActivity {
 
             }
         });
-        if (level<=3)
-        {
-            numimage = 6;
-            collum = 3;
-        }else if(level<=6)
-        {
-            numimage=8;
-            collum=4;
-        }else if(level<=10)
-        {
-            numimage=10;
-            collum=4;
+        if (status.equals("notime")) {
+            if (level <= 3)//1
+            {
+                numimage = 6;
+                collum = 3;
+            } else if (level > 3 && level <= 6) {
+                numimage = 8;
+                collum = 4;
+            } else if (level > 6 && level <= 10) {
+                numimage = 10;
+                collum = 4;
+            }
         }
-
+        if (status.equals("hard")) {
+            if (level <= 3)//1
+            {
+                numimage = 6;
+                collum = 3;
+            } else if (level > 3 && level <= 6) {
+                numimage = 8;
+                collum = 4;
+            } else if (level > 6 && level <= 10) {
+                numimage = 10;
+                collum = 4;
+            }
+        }
+        if (status.equals("normal")) {
+            if (level <= 3)//1
+            {
+                numimage = 6;
+                collum = 3;
+            } else if (level > 3 && level <= 6) {
+                numimage = 8;
+                collum = 4;
+            } else if (level > 6 && level <= 10) {
+                numimage = 10;
+                collum = 4;
+            }
+        }
 
         String [] images =new String[0];
         try {
