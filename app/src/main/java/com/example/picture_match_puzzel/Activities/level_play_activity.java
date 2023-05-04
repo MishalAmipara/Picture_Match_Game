@@ -93,10 +93,12 @@ public class level_play_activity extends AppCompatActivity {
             {
                 numimage = 6;
                 collum = 3;
-            } else if (level > 3 && level <= 6) {
+            }
+            else if (level > 3 && level <= 6) {
                 numimage = 8;
                 collum = 4;
-            } else if (level > 6 && level <= 10) {
+            }
+            else if (level > 6 && level <= 10) {
                 numimage = 10;
                 collum = 4;
             }
@@ -106,10 +108,12 @@ public class level_play_activity extends AppCompatActivity {
             {
                 numimage = 6;
                 collum = 3;
-            } else if (level > 3 && level <= 6) {
+            }
+            else if (level > 3 && level <= 6) {
                 numimage = 8;
                 collum = 4;
-            } else if (level > 6 && level <= 10) {
+            }
+            else if (level > 6 && level <= 10) {
                 numimage = 10;
                 collum = 4;
             }
@@ -119,10 +123,13 @@ public class level_play_activity extends AppCompatActivity {
             {
                 numimage = 6;
                 collum = 3;
-            } else if (level > 3 && level <= 6) {
+            }
+            else if (level > 3 && level <= 6) {
                 numimage = 8;
                 collum = 4;
-            } else if (level > 6 && level <= 10) {
+            }
+            else if (level > 6 && level <= 10)
+            {
                 numimage = 10;
                 collum = 4;
             }
