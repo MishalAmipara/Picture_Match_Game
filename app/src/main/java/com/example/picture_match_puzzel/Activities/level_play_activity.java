@@ -41,7 +41,7 @@ public class level_play_activity extends AppCompatActivity {
     GridView gridView;
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
-     int numimage,collum;
+     int numimage,collum,maxtime,delaytime;
      TextView textView;
      Toolbar toolbar;
      Button back,go;
@@ -92,14 +92,20 @@ public class level_play_activity extends AppCompatActivity {
             if (level <= 3)//1
             {
                 numimage = 6;
+                maxtime=150;
+                delaytime=5;
                 collum = 3;
             }
             else if (level > 3 && level <= 6) {
                 numimage = 8;
+                maxtime=250;
+                delaytime=7;
                 collum = 4;
             }
             else if (level > 6 && level <= 10) {
                 numimage = 10;
+                maxtime=350;
+                delaytime=9;
                 collum = 4;
             }
         }
@@ -107,14 +113,20 @@ public class level_play_activity extends AppCompatActivity {
             if (level <= 3)//1
             {
                 numimage = 6;
+                maxtime=5;
+                delaytime=5;
                 collum = 3;
             }
             else if (level > 3 && level <= 6) {
                 numimage = 8;
+                maxtime=10;
+                delaytime=7;
                 collum = 4;
             }
             else if (level > 6 && level <= 10) {
                 numimage = 10;
+                maxtime=20;
+                delaytime=9;
                 collum = 4;
             }
         }
@@ -122,15 +134,21 @@ public class level_play_activity extends AppCompatActivity {
             if (level <= 3)//1
             {
                 numimage = 6;
+                maxtime=10;
+                delaytime=5;
                 collum = 3;
             }
             else if (level > 3 && level <= 6) {
                 numimage = 8;
+                maxtime=15;
+                delaytime=7;
                 collum = 4;
             }
             else if (level > 6 && level <= 10)
             {
                 numimage = 10;
+                maxtime=25;
+                delaytime=9;
                 collum = 4;
             }
         }
@@ -155,13 +173,13 @@ public class level_play_activity extends AppCompatActivity {
         textView2=dialog.findViewById(R.id.tips_txt);
         go=dialog.findViewById(R.id.go_button);
         textView1.setText("Time : "+status);
-        textView2.setText("You Have 5 Second To Memorize "+"\n"+"All Images");
+        textView2.setText("You Have "+delaytime+"Second To Memorize "+"\n"+"All Images");
         dialog.show();
 
         go.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                play_adapter playAdapter=new play_adapter(level_play_activity.this,preferences,arraylist,progressBar,textView);
+                play_adapter playAdapter=new play_adapter(level_play_activity.this,preferences,arraylist,progressBar,textView,delaytime,maxtime,status);
                 gridView.setNumColumns(collum);
                 gridView.setAdapter(playAdapter);
                 dialog.cancel();

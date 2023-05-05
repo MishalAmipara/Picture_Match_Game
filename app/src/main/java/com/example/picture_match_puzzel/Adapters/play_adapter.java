@@ -44,7 +44,7 @@ public class play_adapter extends BaseAdapter
    TextView toolbar;
    int maxtime,delaytime;
     Runnable runnable;
-    public play_adapter(level_play_activity level_play_activity, SharedPreferences preferences, List<String> arraylist, ProgressBar progressBar, TextView toolbar, int delaytime, int maxtime)
+    public play_adapter(level_play_activity level_play_activity, SharedPreferences preferences, List<String> arraylist, ProgressBar progressBar, TextView toolbar, int delaytime, int maxtime, String status)
     {
         this.level_play_activity=level_play_activity;
         this.imagearr=arraylist;
@@ -54,6 +54,7 @@ public class play_adapter extends BaseAdapter
         this.toolbar=toolbar;
         this.maxtime=maxtime;
         this.delaytime=delaytime;
+        this.status=status;
     }
 
     @Override
@@ -92,256 +93,74 @@ public class play_adapter extends BaseAdapter
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        progressBar.setMax(delaytime);
-        new CountDownTimer(delaytime*1000, 1000) {
-            @Override
-            public void onTick(long l) {
-                int interval= (int) (l/1000);
-                progressBar.setProgress(interval);
-                toolbar.setText("Time: "+interval+"/0");
-            }
 
-            @Override
-            public void onFinish() {
-                startGame(relativeLayout,i,view1);
-                view1.setVisibility(View.VISIBLE);
-                new CountDownTimer(maxtime*1000, 1000) {
-                    @Override
-                    public void onTick(long l) {
-                        progressBar.setMax(maxtime);
-                         time= (int) (l/1000);
 
-                        toolbar.setText("Time: "+(progressBar.getMax()-time)+"/0");
 
-                    }
 
-                    @Override
-                    public void onFinish() {
-//                        status=preferences.getString("status","default");
-//                        int level=preferences.getInt("level",0);
-//                        if (status.equals("notime")) {
-//                            if (level <= 3) {
-//                                if (progressBar.getMax()-time==maxtime)
-//                                {
-//                                    AlertDialog.Builder builder=new AlertDialog.Builder(level_play_activity);
-//                                    builder.setTitle("Time Out");
-//                                    builder.setMessage("IF,You Want to play again click on play"+"\n"+"play another level press ok");
-//                                    builder.setPositiveButton("play", new DialogInterface.OnClickListener() {
-//                                        @Override
-//                                        public void onClick(DialogInterface dialogInterface, int i) {
-//                                            Intent intent = new Intent(level_play_activity,level_play_activity.class);
-//                                            intent.putExtra("level",level);
-//                                            level_play_activity.startActivity(intent);
-//                                        }
-//                                    });
-//                                    builder.setNegativeButton("OK", new DialogInterface.OnClickListener() {
-//                                        @Override
-//                                        public void onClick(DialogInterface dialogInterface, int i) {
-//                                            Intent intent = new Intent(level_play_activity, No_Time_Activity.class);
-//                                            intent.putExtra("level",level);
-//                                            level_play_activity.startActivity(intent);
-//                                        }
-//                                    });
-//                                }
-//
-//                            } else if (level > 3 && level <= 6) {
-//
-//                                if (progressBar.getMax()-time==maxtime)
-//                                {
-//                                    AlertDialog.Builder builder=new AlertDialog.Builder(level_play_activity);
-//                                    builder.setTitle("Time Out");
-//                                    builder.setMessage("IF,You Want to play again click on play"+"\n"+"play another level press ok");
-//                                    builder.setPositiveButton("play", new DialogInterface.OnClickListener() {
-//                                        @Override
-//                                        public void onClick(DialogInterface dialogInterface, int i) {
-//                                            Intent intent = new Intent(level_play_activity,level_play_activity.class);
-//                                            intent.putExtra("level",level);
-//                                            level_play_activity.startActivity(intent);
-//                                        }
-//                                    });
-//                                    builder.setNegativeButton("OK", new DialogInterface.OnClickListener() {
-//                                        @Override
-//                                        public void onClick(DialogInterface dialogInterface, int i) {
-//                                            Intent intent = new Intent(level_play_activity, No_Time_Activity.class);
-//                                            intent.putExtra("level",level);
-//                                            level_play_activity.startActivity(intent);
-//                                        }
-//                                    });
-//                                }
-//                            } else if (level > 6 && level <= 10) {
-//                                if (progressBar.getMax()-time==maxtime)
-//                                {
-//                                    AlertDialog.Builder builder=new AlertDialog.Builder(level_play_activity);
-//                                    builder.setTitle("Time Out");
-//                                    builder.setMessage("IF,You Want to play again click on play"+"\n"+"play another level press ok");
-//                                    builder.setPositiveButton("play", new DialogInterface.OnClickListener() {
-//                                        @Override
-//                                        public void onClick(DialogInterface dialogInterface, int i) {
-//                                            Intent intent = new Intent(level_play_activity,level_play_activity.class);
-//                                            intent.putExtra("level",level);
-//                                            level_play_activity.startActivity(intent);
-//                                        }
-//                                    });
-//                                    builder.setNegativeButton("OK", new DialogInterface.OnClickListener() {
-//                                        @Override
-//                                        public void onClick(DialogInterface dialogInterface, int i) {
-//                                            Intent intent = new Intent(level_play_activity, No_Time_Activity.class);
-//                                            intent.putExtra("level",level);
-//                                            level_play_activity.startActivity(intent);
-//                                        }
-//                                    });
-//                                }
-//                            }
-//                        }
-//                        if (status.equals("normal")) {
-//                            if (level <= 3) {
-//                                if (progressBar.getMax()-time==maxtime)
-//                                {
-//                                    AlertDialog.Builder builder=new AlertDialog.Builder(level_play_activity);
-//                                    builder.setTitle("Time Out");
-//                                    builder.setMessage("IF,You Want to play again click on play"+"\n"+"play another level press ok");
-//                                    builder.setPositiveButton("play", new DialogInterface.OnClickListener() {
-//                                        @Override
-//                                        public void onClick(DialogInterface dialogInterface, int i) {
-//                                            Intent intent = new Intent(level_play_activity,level_play_activity.class);
-//                                            intent.putExtra("level",level);
-//                                            level_play_activity.startActivity(intent);
-//                                        }
-//                                    });
-//                                    builder.setNegativeButton("OK", new DialogInterface.OnClickListener() {
-//                                        @Override
-//                                        public void onClick(DialogInterface dialogInterface, int i) {
-//                                            Intent intent = new Intent(level_play_activity, normal_activity.class);
-//                                            intent.putExtra("level",level);
-//                                            level_play_activity.startActivity(intent);
-//                                        }
-//                                    });
-//                                }
-//                            } else if (level > 3 && level <= 6) {
-//                                if (progressBar.getMax()-time==maxtime)
-//                                {
-//                                    AlertDialog.Builder builder=new AlertDialog.Builder(level_play_activity);
-//                                    builder.setTitle("Time Out");
-//                                    builder.setMessage("IF,You Want to play again click on play"+"\n"+"play another level press ok");
-//                                    builder.setPositiveButton("play", new DialogInterface.OnClickListener() {
-//                                        @Override
-//                                        public void onClick(DialogInterface dialogInterface, int i) {
-//                                            Intent intent = new Intent(level_play_activity,level_play_activity.class);
-//                                            intent.putExtra("level",level);
-//                                            level_play_activity.startActivity(intent);
-//                                        }
-//                                    });
-//                                    builder.setNegativeButton("OK", new DialogInterface.OnClickListener() {
-//                                        @Override
-//                                        public void onClick(DialogInterface dialogInterface, int i) {
-//                                            Intent intent = new Intent(level_play_activity, normal_activity.class);
-//                                            intent.putExtra("level",level);
-//                                            level_play_activity.startActivity(intent);
-//                                        }
-//                                    });
-//                                }
-//                            } else if (level > 6 && level <= 10) {
-//                                if (progressBar.getMax()-time==maxtime)
-//                                {
-//                                    AlertDialog.Builder builder=new AlertDialog.Builder(level_play_activity);
-//                                    builder.setTitle("Time Out");
-//                                    builder.setMessage("IF,You Want to play again click on play"+"\n"+"play another level press ok");
-//                                    builder.setPositiveButton("play", new DialogInterface.OnClickListener() {
-//                                        @Override
-//                                        public void onClick(DialogInterface dialogInterface, int i) {
-//                                            Intent intent = new Intent(level_play_activity,level_play_activity.class);
-//                                            intent.putExtra("level",level);
-//                                            level_play_activity.startActivity(intent);
-//                                        }
-//                                    });
-//                                    builder.setNegativeButton("OK", new DialogInterface.OnClickListener() {
-//                                        @Override
-//                                        public void onClick(DialogInterface dialogInterface, int i) {
-//                                            Intent intent = new Intent(level_play_activity, normal_activity.class);
-//                                            intent.putExtra("level",level);
-//                                            level_play_activity.startActivity(intent);
-//                                        }
-//                                    });
-//                                }
-//                            }
-//                        }
-//                        if (status.equals("hard")) {
-//                            if (level <= 3) {
-//                                if (progressBar.getMax()-time==maxtime)
-//                                {
-//                                    AlertDialog.Builder builder=new AlertDialog.Builder(level_play_activity);
-//                                    builder.setTitle("Time Out");
-//                                    builder.setMessage("IF,You Want to play again click on play"+"\n"+"play another level press ok");
-//                                    builder.setPositiveButton("play", new DialogInterface.OnClickListener() {
-//                                        @Override
-//                                        public void onClick(DialogInterface dialogInterface, int i) {
-//                                            Intent intent = new Intent(level_play_activity,level_play_activity.class);
-//                                            intent.putExtra("level",level);
-//                                            level_play_activity.startActivity(intent);
-//                                        }
-//                                    });
-//                                    builder.setNegativeButton("OK", new DialogInterface.OnClickListener() {
-//                                        @Override
-//                                        public void onClick(DialogInterface dialogInterface, int i) {
-//                                            Intent intent = new Intent(level_play_activity, hard_level_activity.class);
-//                                            intent.putExtra("level",level);
-//                                            level_play_activity.startActivity(intent);
-//                                        }
-//                                    });
-//                                }
-//                            } else if (level > 3 && level <= 6) {
-//                                if (progressBar.getMax()-time==maxtime)
-//                                {
-//                                    AlertDialog.Builder builder=new AlertDialog.Builder(level_play_activity);
-//                                    builder.setTitle("Time Out");
-//                                    builder.setMessage("IF,You Want to play again click on play"+"\n"+"play another level press ok");
-//                                    builder.setPositiveButton("play", new DialogInterface.OnClickListener() {
-//                                        @Override
-//                                        public void onClick(DialogInterface dialogInterface, int i) {
-//                                            Intent intent = new Intent(level_play_activity,level_play_activity.class);
-//                                            intent.putExtra("level",level);
-//                                            level_play_activity.startActivity(intent);
-//                                        }
-//                                    });
-//                                    builder.setNegativeButton("OK", new DialogInterface.OnClickListener() {
-//                                        @Override
-//                                        public void onClick(DialogInterface dialogInterface, int i) {
-//                                            Intent intent = new Intent(level_play_activity, hard_level_activity.class);
-//                                            intent.putExtra("level",level);
-//                                            level_play_activity.startActivity(intent);
-//                                        }
-//                                    });
-//                                }
-//                            } else if (level > 6 && level <= 10) {
-//                                if (progressBar.getMax()-time==maxtime)
-//                                {
-//                                    AlertDialog.Builder builder=new AlertDialog.Builder(level_play_activity);
-//                                    builder.setTitle("Time Out");
-//                                    builder.setMessage("IF,You Want to play again click on play"+"\n"+"play another level press ok");
-//                                    builder.setPositiveButton("play", new DialogInterface.OnClickListener() {
-//                                        @Override
-//                                        public void onClick(DialogInterface dialogInterface, int i) {
-//                                            Intent intent = new Intent(level_play_activity,level_play_activity.class);
-//                                            intent.putExtra("level",level);
-//                                            level_play_activity.startActivity(intent);
-//                                        }
-//                                    });
-//                                    builder.setNegativeButton("OK", new DialogInterface.OnClickListener() {
-//                                        @Override
-//                                        public void onClick(DialogInterface dialogInterface, int i) {
-//                                            Intent intent = new Intent(level_play_activity, hard_level_activity.class);
-//                                            intent.putExtra("level",level);
-//                                            level_play_activity.startActivity(intent);
-//                                        }
-//                                    });
-//                                }
-//                            }
-//                        }
-                    }
-                }.start();
-            }
+            new CountDownTimer(delaytime * 1000, 1000) {
+                @Override
+                public void onTick(long l) {
+                    progressBar.setMax(delaytime);
+                    int interval = (int) (l / 1000);
+                    progressBar.setProgress(interval);
+                    toolbar.setText("Time: " + interval + "/0");
+                }
 
-        }.start();
+                @Override
+                public void onFinish() {
+                    startGame(relativeLayout, i, view1);
+                    view1.setVisibility(View.VISIBLE);
+                    progressBar.setMax(maxtime);
+                    new CountDownTimer(maxtime * 1000, 1000) {
+                        @Override
+                        public void onTick(long l) {
+
+                            time = (int) (l / 1000);
+
+                            toolbar.setText("Time: " + (progressBar.getMax() - time) + "/0");
+
+                        }
+
+                        @Override
+                        public void onFinish() {
+
+                            int level = preferences.getInt("level", 0);
+
+                            if (progressBar.getMax() == maxtime) {
+                                AlertDialog.Builder builder = new AlertDialog.Builder(level_play_activity);
+                                builder.setTitle("Time Out");
+                                builder.setMessage("TRY AGAIN?");
+                                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                            Intent intent = new Intent(level_play_activity,level_play_activity.class);
+                                            intent.putExtra("level",level);
+                                            intent.putExtra("status",status);
+                                            level_play_activity.startActivity(intent);
+
+                                    }
+                                }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        Intent intent = new Intent(level_play_activity, No_Time_Activity.class);
+                                        intent.putExtra("level", level);
+                                        level_play_activity.startActivity(intent);
+                                    }
+                                });
+                                builder.show();
+                            }
+
+
+                        }
+
+
+                    }.start();
+                }
+
+
+
+            }.start();
+
 
 
 

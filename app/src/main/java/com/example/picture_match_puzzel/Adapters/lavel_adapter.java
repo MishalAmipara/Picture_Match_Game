@@ -55,7 +55,7 @@ public class lavel_adapter extends BaseAdapter
         status=preferences.getString("status","default");
         String levels=preferences.getString("levels"+i,"default");
         int lastlevel=preferences.getInt("lastlevel",-1);
-        if (status.equals("notime")&& context.getClass()== No_Time_Activity.class)
+        if ( context.getClass()== No_Time_Activity.class)
         {
             if (levels.equals("Win")) {
                 button.setVisibility(View.VISIBLE);
@@ -75,11 +75,12 @@ public class lavel_adapter extends BaseAdapter
                         intent.putExtra("level", level[i]);
                         intent.putExtra("status", status);
                         context.startActivity(intent);
+
                     }
                 }
             });
 
-        }else if (status.equals("normal") && context.getClass()== normal_activity.class) {
+        }else if ( context.getClass()== normal_activity.class) {
 
                 if (levels.equals("Win")) {
                     button.setVisibility(View.VISIBLE);
@@ -104,7 +105,8 @@ public class lavel_adapter extends BaseAdapter
                 });
 
 
-        }else if (status.equals("hard") &&context.getClass()== hard_level_activity.class) {
+        }else if (context.getClass()== hard_level_activity.class) {
+
                 if (levels.equals("Win")) {
                     button.setVisibility(View.VISIBLE);
                 }
