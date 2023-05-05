@@ -34,18 +34,19 @@ public class No_Time_Activity extends AppCompatActivity {
         setContentView(R.layout.activity_no_time);
         gridView=findViewById(R.id.no_time_grid_view);
         button=findViewById(R.id.warning_button1);
+        preferences=getSharedPreferences("pre",MODE_PRIVATE);
+        editor=preferences.edit();
+        editor.putString("status","notime");
+
         lavel_adapter lavelAdapter=new lavel_adapter(No_Time_Activity.this,preferences);
         gridView.setAdapter(lavelAdapter);
-       preferences=getSharedPreferences("pre",MODE_PRIVATE);
-       editor=preferences.edit();
-       editor.putString("status","notime");
-        editor.putInt("lastlevel",-1);
-       editor.commit();
+
         String actionBarTitle=getIntent().getStringExtra("level");
         toolbar=findViewById(R.id.Toolbar);
         textView=findViewById(R.id.Time_text_view);
         back=findViewById(R.id.back_button);
-
+        editor.putInt("lastlevel",-1);
+        editor.commit();
 
         textView.setText(actionBarTitle);
         setActionBar(toolbar);
