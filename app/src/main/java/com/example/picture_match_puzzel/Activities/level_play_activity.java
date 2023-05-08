@@ -31,6 +31,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 public class level_play_activity extends AppCompatActivity {
     int level;
@@ -88,6 +89,9 @@ public class level_play_activity extends AppCompatActivity {
 
             }
         });
+        int min=0;
+        int max=25;
+        int rendom=new Random().nextInt(max-min)+min;
         if (status.equals("notime")) {
             if (level <= 3)//1
             {
@@ -162,8 +166,8 @@ public class level_play_activity extends AppCompatActivity {
         }
 
 
-
-        arraylist=imagearr.subList(0,numimage);
+        System.out.println("rando,="+rendom);
+        arraylist=imagearr.subList(rendom,numimage+rendom);
 
         arraylist.addAll(arraylist);
         Collections.shuffle(arraylist);

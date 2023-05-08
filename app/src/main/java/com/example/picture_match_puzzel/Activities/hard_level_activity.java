@@ -35,12 +35,12 @@ public class hard_level_activity extends AppCompatActivity {
         gridView.setAdapter(lavelAdapter);
         editor.putString("status","hard");
         editor.putInt("lastlevel",-1);
+
         editor.commit();
        // getSupportActionBar().setTitle("Hard");
         toolbar=findViewById(R.id.Toolbar);
         textView=findViewById(R.id.Time_text_view);
         back=findViewById(R.id.back_button);
-
 
         textView.setText("Hard");
         setActionBar(toolbar);
